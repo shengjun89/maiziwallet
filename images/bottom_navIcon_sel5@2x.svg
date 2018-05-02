@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>bottom_navIcon_sel5@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="125.147513%" y1="-34.6297859%" x2="-30.2673519%" y2="113.61469%" id="linearGradient-1">
+            <stop stop-color="#FF6F43" offset="0%"></stop>
+            <stop stop-color="#F01C13" offset="100%"></stop>
+            <stop stop-color="#FF564A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="home_default-copy-16" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group"></g>
+        <rect id="Rectangle" fill="url(#linearGradient-1)" x="8" y="3" width="8" height="9" rx="4"></rect>
+        <path d="M4.75,18.5 L4.75,18.5 C5.22298653,17.2387026 6.25404724,16.2679855 7.54154486,15.8718324 L8.75,15.5 C10.870982,14.8473901 13.1358042,14.8245155 15.2695349,15.4341528 L16.9461839,15.9131954 C18.2379896,16.2822827 19.2782663,17.2420435 19.75,18.5 L19.75,18.5 C20.0370502,19.2654672 19.6492166,20.1187011 18.8837494,20.4057513 C18.7175513,20.4680756 18.5414987,20.5 18.3639991,20.5 L6.13600094,20.5 C5.31848163,20.5 4.65575129,19.8372697 4.65575129,19.0197504 C4.65575129,18.8422507 4.68767572,18.6661981 4.75,18.5 Z" id="Path-18" fill="url(#linearGradient-1)"></path>
+    </g>
+</svg>

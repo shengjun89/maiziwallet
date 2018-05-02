@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>nav_icon04</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="nav_icon-copy-16" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.982506793">
+        <g id="Group-10" transform="translate(5.000000, 0.000000)" stroke-width="3">
+            <path d="M13.5204082,11.0124777 L22.5,18 L13.5353446,28 L3,18.9803922 L11.5,9 L5.3343425,4.2356283 C4.02329859,3.22254891 2.13922439,3.46409688 1.126145,4.7751408 C0.72021374,5.3004636 0.5,5.9455976 0.5,6.6094833 L0.5,16.5" id="Path-3" stroke="#191817"></path>
+            <path d="M11,15 L16,19" id="Path-12" stroke="#FF1818"></path>
+        </g>
+    </g>
+</svg>

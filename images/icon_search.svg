@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_search</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon_search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-25" fill="#DADADA" fill-rule="nonzero">
+            <g id="icon_search" transform="translate(1.000000, 1.000000)">
+                <path d="M6,12 C2.6862915,12 0,9.3137085 0,6 C0,2.6862915 2.6862915,0 6,0 C9.3137085,0 12,2.6862915 12,6 C12,9.3137085 9.3137085,12 6,12 Z M6,10.4 C8.4300529,10.4 10.4,8.4300529 10.4,6 C10.4,3.5699471 8.4300529,1.6 6,1.6 C3.5699471,1.6 1.6,3.5699471 1.6,6 C1.6,8.4300529 3.5699471,10.4 6,10.4 Z" id="Oval"></path>
+                <polygon id="Path-21" points="12.120031 13.4303046 10.8097573 14.4130098 8.35299431 11.1373257 9.66326793 10.1546205"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

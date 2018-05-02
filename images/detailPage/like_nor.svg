@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>like_nor.svg</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="home_default-copy-22" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group"></g>
+        <g id="Group-25" transform="translate(-3.000000, -4.000000)" fill="#D8D8D8" opacity="0">
+            <rect id="Rectangle-23-Copy" x="0" y="0" width="32" height="32"></rect>
+        </g>
+        <path d="M16.0030702,5 C14.3367617,5 12.9933592,5.9211768 11.9865134,7.11818887 C11.0083809,5.88022515 9.66827341,5 8.00102341,5 C5.65312872,5 4,7.01886934 4,9.21990293 C4,10.4009109 4.48388848,11.2510107 5.01343569,12.050274 C7.86680757,15.4712393 10.2114091,18.0050332 12.0472402,19.6516557 C13.8869144,17.9209325 16.201387,15.3871386 18.990658,12.050274 C19.6143469,11.2510107 20.0040937,10.4004402 20.0040937,9.21990293 C20.0040937,7.01886934 18.3514356,5 16.0030702,5 Z" id="Shape" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-dasharray="47,4,13" fill-rule="nonzero"></path>
+    </g>
+</svg>

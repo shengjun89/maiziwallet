@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>nav_icon12</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="nav_icon-copy-23" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-2" fill-opacity="0" fill="#D8D8D8" x="0" y="0" width="32" height="32"></rect>
+        <g id="Group-16" transform="translate(5.000000, 5.000000)" opacity="0.982506793" stroke-width="3">
+            <path d="M0,7 L0,0 L22,0 L22,9.71400755 C22,10.2662923 21.5522847,10.7140075 21,10.7140075 C20.8564782,10.7140075 20.714638,10.6831138 20.5841167,10.6234255 L20.154521,10.4269684 C18.9783837,9.88911233 17.6307012,9.86861513 16.4387509,10.3704544 L16.1534173,10.4905866 C14.9641006,10.9913171 13.6272429,11.0128401 12.4224235,10.5506545 L11.8931261,10.3476093 C10.6864242,9.88470153 9.34734974,9.90704121 8.1567603,10.4099428 C7.22547688,10.8033143 6.52322345,11 6.05,11 C4.95,11 3.66114453,9.58301761 2.03463306,9.58301761 C2.03419048,11.2595188 2.03419048,15.398513 2.03463306,22 L20.5674761,22 L20.5674761,12.9284939" id="Path-40" stroke="#191817"></path>
+            <path d="M16.5,15 L16.5,19" id="Path-41" stroke="#FF1818"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>like_sel.svg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="125.147513%" y1="-34.6297859%" x2="-30.2673519%" y2="113.61469%" id="linearGradient-1">
+            <stop stop-color="#FF6F43" offset="0%"></stop>
+            <stop stop-color="#F01C13" offset="100%"></stop>
+            <stop stop-color="#FF564A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="home_default-copy-31" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group"></g>
+        <g id="Group-25" transform="translate(-3.000000, -4.000000)" fill="#D8D8D8" opacity="0">
+            <rect id="Rectangle-23-Copy" x="0" y="0" width="32" height="32"></rect>
+        </g>
+        <path d="M17,3 C14.9176471,3 13.2388235,4.15117646 11.9805882,5.64705883 C10.7582353,4.1 9.08352941,3 7,3 C4.06588234,3 2,5.52294117 2,8.27352941 C2,9.74941176 2.60470588,10.8117647 3.26647059,11.8105882 C6.83227311,16.0857011 9.76227533,19.2521333 12.0564773,21.309885 C14.3554818,19.1470344 17.2478325,15.9806021 20.7335294,11.8105882 C21.5129412,10.8117647 22,9.74882354 22,8.27352941 C22,5.52294117 19.9347059,3 17,3 Z" id="Shape" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+    </g>
+</svg>

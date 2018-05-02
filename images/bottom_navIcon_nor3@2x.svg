@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>bottom_navIcon_nor3@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="home_default-copy-13" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.763677542">
+        <path d="M16,8 L18,8 C19.6568542,8 21,9.34314575 21,11 L21,15 L3,15 L3,11 C3,9.34314575 4.34314575,8 6,8 L8,8 L8,6 C8,4.8954305 8.8954305,4 10,4 L14,4 C15.1045695,4 16,4.8954305 16,6 L16,8 Z M14,8 L14,6 L10,6 L10,8 L14,8 Z M21,16.5 L21,18 C21,19.6568542 19.6568542,21 18,21 L6,21 C4.34314575,21 3,19.6568542 3,18 L3,16.5 L21,16.5 Z" id="Combined-Shape" fill="#9F9B9C"></path>
+    </g>
+</svg>

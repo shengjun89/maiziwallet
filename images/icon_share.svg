@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_share@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="home_default-copy-23" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="47,4,13" stroke-linecap="square">
+        <g id="Group-25" transform="translate(5.000000, 5.000000)" stroke="#000000" stroke-width="2">
+            <polyline id="Path-5" points="14 10.5000122 14 14 0 14 0 0 4.2069605 0"></polyline>
+            <path d="M7,7 L13,1" id="Path-36"></path>
+            <polyline id="Path-43" points="14 4.5 14.0000572 0 9.5 0"></polyline>
+        </g>
+    </g>
+</svg>

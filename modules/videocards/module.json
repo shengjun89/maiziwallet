@@ -1,0 +1,1 @@
+{"author":"Hugo Magalhães","dependencies":[],"description":"Module that allows to generate video cards with auto-loading previews","example":"example.coffee","github":"https://github.com/hugomagallanes/framer-videocards","install":"videocard.coffee","installed_count":6,"name":"Videocards","require":"VideoCard = require 'videocard'","unique_name":"videocards"}

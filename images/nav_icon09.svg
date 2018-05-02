@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>nav_icon09</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="nav_icon-copy-21" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-2" fill-opacity="0" fill="#D8D8D8" x="0" y="0" width="32" height="32"></rect>
+        <g id="Group-11" transform="translate(6.000000, 4.000000)" opacity="0.982506793" stroke-width="3">
+            <path d="M6,9 L14,9" id="Path-8" stroke="#FF1818"></path>
+            <path d="M6,15 L14,15" id="Path-8-Copy" stroke="#FF1818"></path>
+            <polyline id="Path-34" stroke="#191817" transform="translate(9.950745, 11.997493) scale(1, -1) translate(-9.950745, -11.997493) " points="7.10850248 22.9949867 0.407203275 23 0.401489993 0.994986677 19.5 0.994986677 19.5 22.9949867 12.4031457 22.9949867"></polyline>
+        </g>
+    </g>
+</svg>

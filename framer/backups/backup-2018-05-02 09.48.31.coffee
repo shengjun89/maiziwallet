@@ -1,10 +1,7 @@
 CarouselComponent = require "carouselcomponent/CarouselComponent"
-VideoCard = require "videocards/videocard"
-Utilscycle = require "bidirectional-cycle/Utilscycle"
 imageFill = require "imagefill/imageFill"
 {StatusBar} = require "StatusBar"
 {Button} = require "Button"
-{IconsNavBar} = require "IconsNavBar"
 {IconsNavBar} = require "IconsNavBar"
 {AnnounceBar} = require "AnnounceBar"
 {ProductList} = require "ProductList"
@@ -120,8 +117,10 @@ TopBanRed_Sum = new TextLayer
 	color: "rgba(255,255,255,1)"
 	html: "<div id='TC' style='height: 120px; width: 308px;font-size:120px;'>15000</div>"
 
-TCNumber = new countup("TC", 0, 56,0,8)
-TCNumber.start()
+# TopBanRed_Sum.text = 0
+LimNumber = new countup("TC", 0, 15000,0,1)
+# LimNumberBack = new countup("TC", 15000, 0,0,1)
+LimNumber.start()
 
 button = new Layer
 	parent: TopBanRedBg
@@ -943,20 +942,21 @@ sum_title = new TextLayer
 masterSum = new TextLayer
 	parent: MasterBanRedBg
 	x: Align.center
-	y: 96
-	text: "2,000"
+	y: 80
+	width: 308
+# 	text: "2,000"
 	fontSize: 96
 	fontFamily: "DIN Alternate"
 	fontWeight: 700
-	letterSpacing: 0.0
 	textAlign: "center"
 	color: "rgba(255,255,255,1)"
-
-
+	html: "<div id='MN' style='height: 120px; width: 308px;font-size:120px;text-align:center;'></div>"
+	
+masterNum = new countup("MN",0,2000,0,1)
 masterYuan = new TextLayer
 	parent: MasterBanRedBg
-	x: masterSum.x-40
-	y: 160
+	x: masterSum.x-12
+	y: 168
 	width: 40
 	text: "¥"
 	fontSize: 32
@@ -1107,7 +1107,7 @@ loanCardData = [{src:"images/loanCardPic01.png",title:"闪电借";subtitle:"6分
 for i in [0...loanCardData.length]
 	loanCard= new LoanCard
 	loanCard.parent = LoanScroll.content
-	loanCard.y = LoanBanBg.height+LoanBanBg.y+48+(loanCard.height+32)*i
+	loanCard.y = LoanBanBg.height+LoanBanBg.y+64+(loanCard.height+32)*i
 	loanCard.loanCardIcon.image = loanCardData[i].src
 	loanCard.loanCardSubtitle.text = loanCardData[i].subtitle
 	loanCard.loanCardTitle.text = loanCardData[i].title
@@ -1115,16 +1115,16 @@ for i in [0...loanCardData.length]
 	loanCard.loanCardMon.text = loanCardData[i].month
 for i in [1...LoanScroll.content.children.length]	
 	LoanScroll.content.children[i].opacity = 0
-	LoanScroll.content.children[i].y = (288+32)*i+24
+	LoanScroll.content.children[i].y = (288+32)*i+32
 	LoanScroll.content.children[i].states =
 		on:
 			opacity:1
-			y:(288+32)*i
+			y:(288+32)*i+8
 			options:
 				delay:0.1*i
 		off:
 			opacity:0
-			y:(288+32)*i+24
+			y:(288+32)*i+32
 	
 BottomBarNavArr[3].onTap ->
 	for i in [1...LoanScroll.content.children.length]
@@ -1360,7 +1360,9 @@ BottomBarNavIconArr[0].opacity = 0
 BottomBarNavIconCurArr[0].opacity = 1
 BottomBarNavIconCurArr[0].scale = 1
 BottomBarNavNamesArr[0].color = primaryColor
-
+LimNumber.start()
+BottomBarNavArr[2].onTap ->
+	masterNum.start()
 for i in [0...BottomBarData.length]
 	BottomBarNavArr[i].onTap ->
 		for i in [0...BottomBarData.length]

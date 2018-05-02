@@ -19,10 +19,9 @@
 6，ProductList.coffee/产品列表
 可配置变量：productPic；productName；productSub；productPrice；
 
-7，ProductList.coffee/产品列表
-可配置变量：productPic；productName；productSub；productPrice；
-
-8，AnnounceBar.coffee/通知栏
+7，AnnounceBar.coffee/通知栏
 可配置变量：annouceTitle；annouceButton；annouceIcon；
 
 其他三方组件：制作滑动banner引入了carouselcomponent；数字翻动效果用引入了countup.js
+
+了解更多组件集成细节欢迎关注微信公众号［ 奔跑的刷牙君 ］给我留言

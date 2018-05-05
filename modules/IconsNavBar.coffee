@@ -1,19 +1,20 @@
 class exports.IconsNavBar extends Layer
+	n = Screen.width/750
 	constructor: (@options={}) ->
 		_.defaults @options,
 			backgroundColor:"#FFF"
-			height: 160
+			height: 160*n
 		
 		@navIconPic = new Layer
-			width:64
-			height:64
+			width:64*n
+			height:64*n
 			backgroundColor:"null"
 			image:"images/nav_icon01.svg"
 			backgroundColor:"#F5F5F5"
 		
 		@navIconName = new TextLayer
-			height:40
-			fontSize:24
+			height:40*n
+			fontSize:24*n
 			color:"#2D2929"
 			text:"iconname"
 			textAlign:"center"
@@ -22,9 +23,9 @@ class exports.IconsNavBar extends Layer
 		
 		@navIconPic.parent = @
 		@navIconPic.x = Align.center
-		@navIconPic.y = 32
+		@navIconPic.y = 32*n
 		@navIconName.parent = @
-		@navIconName.y = 112
+		@navIconName.y = 112*n
 		@navIconName.width = @.width
 		@.onTouchStart @TouchStart
 		@.onTouchEnd @TouchEnd

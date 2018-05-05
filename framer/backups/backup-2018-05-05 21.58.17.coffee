@@ -1,20 +1,34 @@
 CarouselComponent = require "carouselcomponent/CarouselComponent"
-VideoCard = require "videocards/videocard"
-Utilscycle = require "bidirectional-cycle/Utilscycle"
 imageFill = require "imagefill/imageFill"
 {StatusBar} = require "StatusBar"
 {Button} = require "Button"
-{IconsNavBar} = require "IconsNavBar"
 {IconsNavBar} = require "IconsNavBar"
 {AnnounceBar} = require "AnnounceBar"
 {ProductList} = require "ProductList"
 {ListWithIcon} = require "ListWithIcon"
 {LoanCard} = require "LoanCard"
 {countup} = require "npm"
+{Adapt} = require "Adapt"
+
+Adapt.setBreakpoints
+	small: 600
+	medium: 800
+	large: 1200
+Adapt.fontSize =
+	small: 48
+	medium: 64
+	large: 96
+	other: 128
+		
+Adapt.text =
+	small: "Tiny"
+	medium: "Smallish"
+	large: "Normal"
+	other: "Huge!"
+n = Screen.width/750	
+	
 primaryColor = "#F7452A"
 defaultColor = "#9e9e9e"
-
-
 Screen.backgroundColor="#FAFAFA"
 # Springs缓动预定义
 iOSAppLaunch = "spring(320,40,0)"
@@ -53,10 +67,67 @@ for i in [0..BottomBarData.length]
 		visible: false
 # 	StatusBar = new StatusBar	
 	MainPageArr.push(Page)
+BottomBar = new Layer
+	width: Screen.width
+	height: 96*n
+	y: Align.bottom
+	backgroundColor: "#FFF"
+	opacity: 0.8
+	shadowY: -1
+	shadowColor: "rgba(0,0,0,0.12)"
+
+BottomBarNavArr = []
+BottomBarNavIconArr = []
+BottomBarNavIconCurArr = []
+BottomBarNavNamesArr = []
+
+for i in [0...BottomBarData.length]
+	BottomBarNav = new Layer
+		parent: BottomBar
+		width: Screen.width/BottomBarData.length
+		x: Screen.width/BottomBarData.length*i
+		backgroundColor: "#FFF"
+	
+	BottomBarNavIconCurrent = new Layer
+		parent: BottomBarNav
+		width: 48*n
+		height: 48*n
+		x: Align.center
+		y: 12
+		backgroundColor: null
+		image: 	BottomBarData[i].current
+		opacity: 0
+		
+	BottomBarNavIcon = new Layer
+		parent: BottomBarNav
+		width: 48*n
+		height: 48*n
+		x: Align.center
+		y: 12
+		backgroundColor: null
+		image: 	BottomBarData[i].src
+		
+	NavName = new TextLayer
+		parent: BottomBarNav
+		y: 60*n
+		width: Screen.width/BottomBarData.length
+		fontSize: 22*n
+		textAlign: "center"
+		color: defaultColor
+		text: BottomBarData[i].name			
+	BottomBarNavArr.push(BottomBarNav)
+	BottomBarNavIconArr.push(BottomBarNavIcon)
+	BottomBarNavIconCurArr.push(BottomBarNavIconCurrent)
+	BottomBarNavNamesArr.push(NavName)
+
 
 
 # 首页
 #头部导航栏
+
+
+
+
 StatusBar = new StatusBar
 StatusBar.pageTitle.text = "麦子钱包"
 StatusBar.topbarLeftIcon01.visible = false	
@@ -66,8 +137,6 @@ homeScroll = new ScrollComponent
 	size: Screen.size
 	scrollHorizontal: false
 	
-
-		
 
 # 图标导航
 navIconsData = [{src:"images/nav_icon01.svg",name:"租房分期";},{src:"images/nav_icon02.svg",name:"教育分期";},{src:"images/nav_icon03.svg",name:"额度分期";},{src:"images/nav_icon04.svg",name:"一枚分期";}]
@@ -81,17 +150,20 @@ itembg = ["images/images/items0.png","images/images/items1.png","images/images/i
 #banner
 TopBanRedBg = new VideoLayer
 	parent: homeScroll.content
-	y: StatusBar.height+88
+	y: StatusBar.topbar.height+StatusBar.topbar.y
 	width: Screen.width
-	height: 296
+	height: 296*n
 	html: "<div style='background: linear-gradient(45deg, #EA3C35,#FF9743);height:296px;filter:hue-rotate(0deg);'></div>"
 	backgroundColor: null
+
+
+
 
 TopBanRedBgShadow = TopBanRedBg.copy()
 TopBanRedBgShadow.parent = TopBanRedBg
 TopBanRedBgShadow.blur = 16
 TopBanRedBgShadow.opacity = 0.4
-TopBanRedBgShadow.y = 24
+TopBanRedBgShadow.y = 24*n
 
 
 TopBanRed_Sum_title = new TextLayer
@@ -99,7 +171,7 @@ TopBanRed_Sum_title = new TextLayer
 	x: Align.center
 	y: Align.top(48)
 	text: "最高可借"
-	fontSize: 24
+	fontSize: 24*n
 	fontFamily: "PingFang SC"
 	fontWeight: 300
 	letterSpacing: 0.0
@@ -109,10 +181,10 @@ TopBanRed_Sum_title = new TextLayer
 TopBanRed_Sum = new TextLayer
 	parent: TopBanRedBg
 	x: Align.center
-	y: Align.top(72)
-	width: 308
+	y: Align.top(72*n)
+	width: 308*n
 # 	text: "150,000"
-	fontSize: 92
+	fontSize: 92*n
 	fontFamily: "DIN Alternate"
 	fontWeight: 700
 	letterSpacing: 0.0
@@ -120,6 +192,13 @@ TopBanRed_Sum = new TextLayer
 	color: "rgba(255,255,255,1)"
 	html: "<div id='TC' style='height: 120px; width: 308px;font-size:120px;'>15000</div>"
 
+if Screen.width > 1200
+	TopBanRedBg.html = "<div style='background: linear-gradient(45deg, #EA3C35,#FF9743);height:491px;filter:hue-rotate(0deg);'></div>"	
+	TopBanRed_Sum.html = "<div id='TC' style='font-size:180px;'>15000</div>"
+	
+if Screen.width < 750
+	TopBanRedBg.html = "<div style='background: linear-gradient(45deg, #EA3C35,#FF9743);height:260px;filter:hue-rotate(0deg);'></div>"	
+	TopBanRed_Sum.html = "<div id='TC' style='font-size:88px;'>15000</div>"	
 # TopBanRed_Sum.text = 0
 LimNumber = new countup("TC", 0, 15000,0,1)
 # LimNumberBack = new countup("TC", 15000, 0,0,1)
@@ -128,18 +207,18 @@ LimNumber.start()
 button = new Layer
 	parent: TopBanRedBg
 	x: Align.center
-	y: Align.bottom(-48)
+	y: Align.bottom(-56*n)
 	backgroundColor: "transparent"
-	width: 320
-	height: 48
+	width: 160*n
+	height: 48*n
 	
 
 button_bg = new Layer
 	parent: button
 	x: Align.center
 	y: 24
-	width: 240
-	height: 48
+	width: 160*n
+	height: 48*n
 	backgroundColor: "rgba(255,255,255,1)"
 	borderRadius: 62
 
@@ -148,7 +227,7 @@ buttontxt = new TextLayer
 	x: Align.center
 	y: Align.center(24)
 	text: "立即开户"
-	fontSize: 24
+	fontSize: 24*n
 	fontFamily: "PingFang SC"
 	fontWeight: 500
 	letterSpacing: 0.0
@@ -162,7 +241,7 @@ buttontxt = new TextLayer
 iconNavGroup = new Layer
 	parent: homeScroll.content
 	width: Screen.width
-	height: 160
+	height: 160*n
 	y: TopBanRedBg.y+TopBanRedBg.height
 	shadowY: 1
 	shadowColor: "#e0e0e0"
@@ -174,24 +253,29 @@ homeScroll.parent = MainPageArr[0]
 
 for i in [0...navIconsData.length]
 	iconsNavBar = new IconsNavBar
+# 	iconsNavBar.height = 160*n
 	iconsNavBar.parent = iconNavGroup
 	#载入导航图标组件
 	navIcons.push(iconsNavBar)
 	iconsNavBar.width = Screen.width/navIconsData.length
 	iconsNavBar.x = Screen.width/navIconsData.length*i
+	iconsNavBar.navIconPic.x = Align.center
 	iconsNavBar.navIconPic.image = navIconsData[i].src
 	iconsNavBar.navIconName.text = navIconsData[i].name
+	iconsNavBar.navIconName.x = Align.center
+
 
 announce = new AnnounceBar
 announce.annouceTitle.text = "关于麦子借款女神节活动通知"
 announce.annouceButton.text = "更多"
+
 announce.parent = homeScroll.content
-announce.y = 634
+announce.y = iconNavGroup.height+iconNavGroup.y+16*n
 banner = new Layer
 	parent: homeScroll.content
 	name: "banner"
 	width: Screen.width
-	height: 240
+	height: 240*n
 	backgroundColor: "#FFF"
 	padding:32
 	y:announce.y+announce.height+4
@@ -217,7 +301,7 @@ bannerBg = new Layer
 	x: Align.center
 	y: Align.center
 	borderRadius: 8
-	height: 188
+	height: 188*n
 	z: 1
 	opacity: 1
 # 	html:"<div style='height:224px;border-radius:12px;background-color:#F5F5F5;'></div>"
@@ -228,19 +312,19 @@ bannerBg = new Layer
 
 myCarousel = new CarouselComponent
 	parent: homeScroll.content
-	y:banner.y+banner.height+16
+	y:banner.y+banner.height+16*n
 	backgroundColor:"#FFF"
 	title: "活动专区"
-	titleFontSize: 28
+	titleFontSize: 28*n
 	titleColor: "#212121"
 	itemCount: 3
 	itemMargin: 24
-	itemWidth: 288
-	itemHeight: 144
+	itemWidth: 288*n
+	itemHeight: 144*n
 	itemBorderRadius: 8
 	imagePrefix: "images/items"
-	margins: [48, 32, 32, 32]
-	titleMargin: 16
+	margins: [48*n, 32, 32, 32]
+	titleMargin: 16*n
 
 myCarousel.row.width = 750
 
@@ -256,8 +340,8 @@ BottomTxt = new TextLayer
 	text: "没有更多内容"
 	textAlign: "center"
 	width: Screen.width
-	fontSize: 24
-	y: Align.bottom(-40)
+	fontSize: 24*n
+	y: Align.bottom(-40*n)
 	color: "#BDBDBD"
 
 
@@ -269,8 +353,8 @@ BottomTxt = new TextLayer
 # 滑动TAB
 scrollTab = new ScrollComponent
 	parent: MainPageArr[1]
-	y: 87
-	height: 88
+	y: 88*n
+	height: 88*n
 	width: Screen.width-88
 	backgroundColor: "#FFF"	
 	z: 2
@@ -298,13 +382,13 @@ scrollTabLayerArr = []
 for i in [0...scrollTabNameData.length]	
 	scrollTabLayer = new TextLayer
 		parent: scrollTab.content
-		width: 120
-		height: 88
+		width: 120*n
+		height: 88*n
 		textAlign: "center"
 		lineHeight: 3
 		color: "#616161"
-		x: 120*i
-		fontSize: 28
+		x: 120*i*n
+		fontSize: 28*n
 		fontWeight: 500
 		backgroundColor: "#FFF"
 		text: scrollTabNameData[i]
@@ -343,7 +427,7 @@ pageScroller.content.draggable.bounceOptions =
 	tolerance:1
 	
 pageScroller.contentInset =
-    top: 286	
+    top: 286*n	
 # Loop to create pages
 for index in [0...scrollTabNameData.length]
 	page = new Layer
@@ -371,12 +455,12 @@ mallScroll.content.on Events.DragEnd, ->
 
 TabunderLineLayer = new Layer
 	parent: scrollTab.content
-	height: 12
-	width: 60
+	height: 12*n
+	width: 60*n
 # 	originX: 0
 	scaleX: 1
-	x: 32
-	y: 80
+	x: 32*n
+	y: 80*n
 	backgroundColor: primaryColor
 
 
@@ -418,7 +502,7 @@ for i in [0...scrollTabNameData.length]
 # 	scrollTabLayerArr[i].on Events.TouchEnd, (event, layer) ->
 # 		@brightness = 100		
 
-
+	
 pageScroller.on Events.Move, ->
 	scrolltoX(pageScroller.scrollX)
 # 	print pageScroller.scrollX
@@ -444,10 +528,10 @@ StatusBarMall.parent = MainPageArr[1]
 more = new Layer
 	parent: StatusBarMall
 	x: Align.right
-	y: 88
+	y: 88*n
 	z: 1
-	width: 88
-	height: 88
+	width: 88*n
+	height: 88*n
 	backgroundColor: "rgba(255,255,255,1)"
 	shadowColor: "rgba(255,255,255,1)"
 	shadowX: -32
@@ -456,64 +540,12 @@ more = new Layer
 	shadowSpread: 0
 	image: "images/more.svg"
 
-BottomBar = new Layer
-	width: Screen.width
-	height: 96
-	y: Align.bottom
-	backgroundColor: "#FFF"
-	opacity: 0.8
-	shadowY: -1
-	shadowColor: "rgba(0,0,0,0.12)"
-
-BottomBarNavArr = []
-BottomBarNavIconArr = []
-BottomBarNavIconCurArr = []
-BottomBarNavNamesArr = []
-
-for i in [0...BottomBarData.length]
-	BottomBarNav = new Layer
-		parent: BottomBar
-		width: Screen.width/BottomBarData.length
-		x: Screen.width/BottomBarData.length*i
-		backgroundColor: "#FFF"
-	
-	BottomBarNavIconCurrent = new Layer
-		parent: BottomBarNav
-		width: 48
-		height: 48
-		x: Align.center
-		y: 12
-		backgroundColor: null
-		image: 	BottomBarData[i].current
-		opacity: 0
-		
-	BottomBarNavIcon = new Layer
-		parent: BottomBarNav
-		width: 48
-		height: 48
-		x: Align.center
-		y: 12
-		backgroundColor: null
-		image: 	BottomBarData[i].src
-		
-	NavName = new TextLayer
-		parent: BottomBarNav
-		y: 60
-		width: Screen.width/BottomBarData.length
-		fontSize: 22
-		textAlign: "center"
-		color: defaultColor
-		text: BottomBarData[i].name			
-	BottomBarNavArr.push(BottomBarNav)
-	BottomBarNavIconArr.push(BottomBarNavIcon)
-	BottomBarNavIconCurArr.push(BottomBarNavIconCurrent)
-	BottomBarNavNamesArr.push(NavName)
 
 searchBg = new Layer
 	parent: MainPageArr[1]
 	width: Screen.width
-	height: 112
-	y: 174
+	height: 112*n
+	y: scrollTab.y+scrollTab.height
 	backgroundColor: "#FFF"
 	
 searchBg.states =
@@ -542,16 +574,16 @@ rectangle2 = new Layer
 	parent: search_input
 	x: 0
 	y: 0
-	width: Screen.width-192
-	height: 64
+	width: Screen.width-192*n
+	height: 64*n
 	backgroundColor: "rgba(247,245,245,1)"
 
 iPhone = new TextLayer
 	parent: search_input
-	x: 55
-	y: 14
+	x: 55*n
+	y: 14*n
 	text: "iPhoneX"
-	fontSize: 28
+	fontSize: 28*n
 	fontFamily: "PingFang SC"
 	fontWeight: 400
 	letterSpacing: 0.8
@@ -559,29 +591,29 @@ iPhone = new TextLayer
 	color: "#BDBDBD"
 	
 icon_search = new Layer
-	width: 32
-	height: 32
-	x: 12
-	y: 16
+	width: 32*n
+	height: 32*n
+	x: 12*n
+	y: 16*n
 	parent: search_input
 	backgroundColor: null
 	image: "images/icon_search.svg"	
 
 cart = new Layer
 	parent: searchBg
-	width: 48
-	height: 48
+	width: 48*n
+	height: 48*n
 	y: 40
-	x: Align.right(-98)
+	x: Align.right(-98*n)
 	backgroundColor: null
 	image: "images/cart.svg"
 	
 detail = new Layer
 	parent: searchBg
-	width: 48
-	height: 48
+	width: 48*n
+	height: 48*n
 	y: 40
-	x: Align.right(-32)
+	x: Align.right(-32*n)
 	backgroundColor: null
 	image: "images/detail.svg"
 	
@@ -589,14 +621,14 @@ mallTopBan = new Layer
 	parent: pageScroller.content.children[0]
 	width: Screen.width
 	y: 0
-	height: 268
+	height: 268*n
 	backgroundColor: "#F5F5F5"
 mallTopBanPic = new Layer
 	parent: mallTopBan
-	width: Screen.width-64
-	x: 32
-	y: 12
-	height: 228
+	width: Screen.width-64*n
+	x: 32*n
+	y: 12*n
+	height: 228*n
 	image: "images/mall_top_baner.png"
 	
 	
@@ -608,8 +640,8 @@ mallTopBanPic = new Layer
 mall_iconNavGroup = new Layer
 	parent: pageScroller.content.children[0]
 	width: Screen.width
-	height: 160
-	y: 244
+	height: 160*n
+	y: mallTopBan.height+mallTopBan.y
 	shadowY: 1
 	shadowColor: "#e0e0e0"
 	backgroundColor: "#FFF"
@@ -623,6 +655,8 @@ for i in [0...mall_navIconsData.length]
 	navIcons.push(iconsNavBar)
 	iconsNavBar.width = Screen.width/mall_navIconsData.length
 	iconsNavBar.x = Screen.width/mall_navIconsData.length*i
+	iconsNavBar.navIconPic.x = Align.center
+	iconsNavBar.navIconName.x = Align.center
 	iconsNavBar.navIconPic.image = mall_navIconsData[i].src
 	iconsNavBar.navIconName.text = mall_navIconsData[i].name
 	
@@ -630,25 +664,25 @@ dailybest = new Layer
 	parent: pageScroller.content.children[0]
 	width: Screen.width
 	backgroundColor: "#FFF"
-	height: 112
-	y: 398
+	height: 112*n
+	y: mall_iconNavGroup.y+mall_iconNavGroup.height
 	
 dailybestTitle = new TextLayer
 	parent: dailybest
 	width: Screen.width-120
-	x: 32
+	x: 32*n
 	text: "每日精选"
-	fontSize: 28
+	fontSize: 28*n
 	lineHeight: 5
 	color: "#212121"
 	fontWeight: 900
 dailybestMore = new TextLayer
 	parent: dailybest
-	width: 80
+	width: 80*n
 	x: Align.right
 	text: "更多"
 	color: defaultColor
-	fontSize: 24
+	fontSize: 24*n
 	lineHeight: 5.8
 
 #制作一个2列的视图矩阵
@@ -665,22 +699,23 @@ for i in [0...mall_dailybestData.length]
 	if i%2 == 0
 		row=0
 		col++
-	dailybestPro.x = (328+dailybestGutter)*row+32
-	dailybestPro.y = 400*(col-1)+520
+		
+	dailybestPro.x = (328*n+dailybestGutter)*row+32*n
+	dailybestPro.y = 400*n*(col-1)+dailybest.height+dailybest.y
 	row++
 	dailybestArr.push(dailybestPro)
 	
 # 	print mall_dailybestData[i].src
 	dailybestArr[i].productPic.image = mall_dailybestData[i].src
-	dailybestArr[i].productPic.image.states =
-		on:
-			scale: 2.5
-			x:0
-			y:0
-		off:
-			scale: 1
-			x:(328+dailybestGutter)*row+32
-			y:400*(col-1)+520	 
+# 	dailybestArr[i].productPic.image.states =
+# 		on:
+# 			scale: 2.5
+# 			x:0
+# 			y:0
+# 		off:
+# 			scale: 1
+# 			x:(328*n+dailybestGutter)*row+32*n
+# 			y:400*n*(col-1)+520	 
 	dailybestArr[i].productName.text = mall_dailybestData[i].name
 	dailybestArr[i].productSub.text = mall_dailybestData[i].subtitle
 	dailybestArr[i].productPrice.text = mall_dailybestData[i].price		
@@ -704,20 +739,20 @@ prodetailPage = new Layer
 detailPicArr = ["images/detailPage/detail1_pic.png","images/detailPage/detail2_pic.png","images/detailPage/detail3_pic.png","images/detailPage/detail4_pic.png","images/detailPage/detail5_pic.png",]
 
 prodetailScroll = new ScrollComponent
-	y: 172
+	y: 172*n
 	size: Screen.size
 	scrollHorizontal: false
 	parent: prodetailPage
 
 prodetailScroll.contentInset =
-	bottom: 160
+	bottom: 160*n
 
 	
 prodetailPic = new Layer
 	parent: prodetailScroll.content
 	backgroundColor: "#FFF"
 	width:Screen.width
-	height: 560
+	height: 560*n
 	y: 0
 	image: "images/dailybestpic01.png"
 	z: 2
@@ -725,14 +760,14 @@ for i in [0...detailPicArr.length]
 	detailPic = new Layer
 		parent: prodetailScroll.content
 		width: Screen.width
-		height: 560
+		height: 560*n
 		image: detailPicArr[i]
-		y: 560+560*i
+		y: 560+560*i*n
 
 prodetailBottom = new Layer
 	parent: prodetailPage
 	width: Screen.width
-	height: 98
+	height: 98*n
 	backgroundColor: "#FFF"
 	y: Align.bottom
 	shadowY: -1
@@ -744,24 +779,24 @@ prodetailCart = new Layer
 	y: 0
 	backgroundColor: "transparent"
 	width: Screen.width/6
-	height: 98
+	height: 98*n
 
 
 prodetailCartIcon = new Layer
 	parent: prodetailCart
 	x: Align.center
-	y: 8
-	width: 48
-	height: 48
+	y: 8*n
+	width: 48*n
+	height: 48*n
 	image: "images/cart.svg"
 
 prodetailCartTxt = new TextLayer
 	parent: prodetailCart
 	width: Screen.width/6
 	x: Align.center
-	y: 56
+	y: 56*n
 	text: "购物车"
-	fontSize: 22
+	fontSize: 22*n
 	fontFamily: "PingFang SC"
 	fontWeight: 400
 	letterSpacing: 0.0
@@ -785,8 +820,8 @@ prodetailColl = new TextLayer
 	width: Screen.width/3
 	x:Screen.width/3
 	textAlign: "center"
-	height: 98
-	fontSize: 28
+	height: 98*n
+	fontSize: 28*n
 	lineHeight: 3.4
 	text:"加入购物车"
 	borderWidth: 0.5
@@ -879,13 +914,18 @@ prodetailStatusBar.children[1].children[0].onTap ->
 			options: 
 				curve: iOSSlideView
 				time: 0.5
-				
-mallScroll.content.on Events.DragStart, ->
-	searchBg.animate "on"
+
+mallScroll.on Events.Move, ->
+	scrolltoY(mallScroll.scrollY)
+scrolltoY = (y) ->
+	searchBg.y = Utils.modulate(y,[0,240*n],[174*n,0],true)
+					
+# mallScroll.content.on Events.DragStart, ->
+# 	searchBg.animate "on"
 # mallScroll.content.on Events.DragMove, ->
-# 	searchBg.animate "on"			
-mallScroll.content.on Events.DragEnd, ->
-	searchBg.animate "off"	
+# 	searchBg.animate "off"			
+# mallScroll.content.on Events.DragEnd, ->
+# 	searchBg.animate "off"	
 
 
 # 管家
@@ -908,24 +948,19 @@ masterScroll = new ScrollComponent
 	
 MasterBanRedBg = new Layer
 	parent: masterScroll.content
-	y: masterStatusBar.height+88
+	y: masterStatusBar.height+88*n
 	width: Screen.width
-	height: 296
+	height: 296*n
 	html: "<div style='background: linear-gradient(-45deg, #33B5FF,#512FFF);height:296px;filter:hue-rotate(0deg);'></div>"
 	backgroundColor: null
-	
-MasterBanRedBgShadow = MasterBanRedBg.copy()
-MasterBanRedBgShadow.parent = MasterBanRedBg
-MasterBanRedBgShadow.blur = 16
-MasterBanRedBgShadow.opacity = 0.4
-MasterBanRedBgShadow.y = 24		
+		
 
 ban_title = new TextLayer
 	parent: MasterBanRedBg
 	x: Align.center
-	y: 48
+	y: 48*n
 	text: "11月信用卡"
-	fontSize: 28
+	fontSize: 28*n
 	fontFamily: "PingFang SC"
 	fontWeight: 300
 	textAlign: "center"
@@ -934,9 +969,9 @@ ban_title = new TextLayer
 sum_title = new TextLayer
 	parent: MasterBanRedBg
 	x: Align.center
-	y: 224
+	y: 224*n
 	text: "剩余应还款(总金额)"
-	fontSize: 24
+	fontSize: 24*n
 	fontFamily: "PingFang SC"
 	fontWeight: 300
 	textAlign: "center"
@@ -945,29 +980,46 @@ sum_title = new TextLayer
 masterSum = new TextLayer
 	parent: MasterBanRedBg
 	x: Align.center
-	y: 96
+	y: 80*n
+	width: 308*n
 # 	text: "2,000"
-	fontSize: 96
+	fontSize: 120*n
 	fontFamily: "DIN Alternate"
 	fontWeight: 700
-	letterSpacing: 0.0
 	textAlign: "center"
 	color: "rgba(255,255,255,1)"
-	html: "<div id='MN' style='height: 120px; width: 200px;font-size:120px;'></div>"
+	html: "<div id='MN' style='height: 120px; width: 308px;text-align:center;'></div>"
+	
+if Screen.width > 1200
+	MasterBanRedBg.html = "<div style='background: linear-gradient(-45deg, #33B5FF,#512FFF);height:491px;filter:hue-rotate(0deg);'></div>"
+	masterSum.html = "<div id='MN' style='height: 120px; width: 488px;text-align:center;'></div>"
+	
+if Screen.width < 750
+	MasterBanRedBg.html = "<div style='background: linear-gradient(-45deg, #33B5FF,#512FFF);height:240px;filter:hue-rotate(0deg);'></div>"
+	masterSum.html = "<div id='MN' style='height: 120px; width: 288px;text-align:center;'></div>"
+
+MasterBanRedBgShadow = MasterBanRedBg.copy()
+MasterBanRedBgShadow.parent = MasterBanRedBg
+MasterBanRedBgShadow.blur = 16
+MasterBanRedBgShadow.opacity = 0.4
+MasterBanRedBgShadow.y = 24*n
+MasterBanRedBgShadow.placeBehind(ban_title)
 masterNum = new countup("MN",0,2000,0,1)
-
-
 masterYuan = new TextLayer
 	parent: MasterBanRedBg
-	x: masterSum.x-40
-	y: 160
-	width: 40
+	x: masterSum.x-24*n
+	y: 168*n
+	width: 40*n
 	text: "¥"
-	fontSize: 32
+	fontSize: 32*n
 	fontFamily: "PingFang SC"
 	fontWeight: 300
 	textAlign: "center"
 	color: "rgba(255,255,255,1)"
+
+
+
+
 	
 cardPicArr= ["images/bank card01.png","images/bank card02.png"]
 for i in [0...cardPicArr.length]
@@ -975,8 +1027,8 @@ for i in [0...cardPicArr.length]
 		parent: masterScroll.content
 		width: Screen.width-64
 		x: Align.center
-		y: 288*i+504
-		height: 256
+		y: 288*i*n+MasterBanRedBg.y+116*n
+		height: 256*n
 		shadowY: 1
 		shadowBlur: 24
 		shadowColor: "#DBDBDB"
@@ -989,7 +1041,7 @@ Button = new Button
 Button.parent = masterScroll.content
 Button.z = 9
 Button.x = 32
-Button.y = card.y+card.height+32
+Button.y = card.y+card.height+32*n
 Button.width = Screen.width-64
 Button.label.width = Screen.width-160
 Button.borderWidth = 1
@@ -1000,16 +1052,16 @@ Button.backgroundColor = "#FFF"
 
 for i in [1...masterScroll.content.children.length]
 	masterScroll.content.children[i].opacity = 0
-	masterScroll.content.children[i].y = (256+16)*i+230+24
+	masterScroll.content.children[i].y = 288*i*n+MasterBanRedBg.y
 	masterScroll.content.children[i].states =
 		on:
 			opacity:1
-			y:(256+16)*i+230
+			y:288*i*n+MasterBanRedBg.y+32*n
 			options:
 				delay:0.1*i
 		off:
 			opacity:0
-			y:(256+16)*i+24	
+			y:288*i*n+MasterBanRedBg.y+116*n
 	
 BottomBarNavArr[2].onTap ->
 	for i in [1...masterScroll.content.children.length]
@@ -1032,15 +1084,22 @@ LoanScroll = new ScrollComponent
 LoanScroll.content.height = 3000	
 LoanScroll.content.backgroundColor = "#F5F5F5"
 LoanScroll.contentInset=
-	top: 180
-	bottom: 160
+	top: 196*n
+	bottom: 160*n
 LoanBanBg = new Layer
 	parent: LoanScroll.content
 	y: 0
 	width: Screen.width
-	height: 296
+	height: 296*n
 	html: "<div style='background: linear-gradient(-45deg, #6C5EFC,#AD4EF3);height:296px;filter:hue-rotate(0deg);'></div>"
 	backgroundColor: null
+
+
+if Screen.width>1200
+	LoanBanBg.html = "<div style='background: linear-gradient(-45deg, #6C5EFC,#AD4EF3);height:491px;filter:hue-rotate(0deg);'></div>"
+	
+if Screen.width<750	
+	LoanBanBg.html = "<div style='background: linear-gradient(-45deg, #6C5EFC,#AD4EF3);height:240px;filter:hue-rotate(0deg);'></div>"
 
 LoanBanBgShadow = LoanBanBg.copy()
 LoanBanBgShadow.parent = LoanBanBg
@@ -1059,19 +1118,20 @@ apply_num = new Layer
 
 path9 = new Layer
 	parent: apply_num
-	x: 0
+	x: Align.center
 	y: 0
-	width: 240
-	height: 44
+	width: 240*n
+	height: 44*n
 	opacity: 0.4
 	backgroundColor: "#6804EE"
 
 layer_3212716 = new TextLayer
+	width: 240*n
 	parent: apply_num
 	x: Align.center
-	y: 8
+	y: 8*n
 	text: "已有3212716人申请"
-	fontSize: 22
+	fontSize: 22*n
 	fontFamily: "PingFang SC"
 	fontWeight: 300
 	letterSpacing: 0.0
@@ -1081,9 +1141,9 @@ layer_3212716 = new TextLayer
 loan_title = new TextLayer
 	parent: LoanBanBg
 	x: Align.center
-	y: 212
+	y: 212*n
 	text: "借1万元日息最低1块3"
-	fontSize: 24
+	fontSize: 24*n
 	fontFamily: "PingFang SC"
 	fontWeight: 300
 	letterSpacing: 0.0
@@ -1093,10 +1153,10 @@ loan_title = new TextLayer
 loan_subtitle = new TextLayer
 	parent: LoanBanBg
 	x: Align.center
-	y: 120
-	width: 566
+	y: 120*n
+	width: 566*n
 	text: "极速下款，最高5万"
-	fontSize: 46
+	fontSize: 46*n
 	fontFamily: "PingFang SC"
 	fontWeight: 600
 	letterSpacing: 0.0
@@ -1119,16 +1179,16 @@ for i in [0...loanCardData.length]
 	loanCard.loanCardMon.text = loanCardData[i].month
 for i in [1...LoanScroll.content.children.length]	
 	LoanScroll.content.children[i].opacity = 0
-	LoanScroll.content.children[i].y = (288+32)*i+32
+	LoanScroll.content.children[i].y = (288+32)*i*n+32
 	LoanScroll.content.children[i].states =
 		on:
 			opacity:1
-			y:(288+32)*i+8
+			y:(288+32)*i*n+8
 			options:
 				delay:0.1*i
 		off:
 			opacity:0
-			y:(288+32)*i+32
+			y:(288+32)*i*n+32
 	
 BottomBarNavArr[3].onTap ->
 	for i in [1...LoanScroll.content.children.length]
@@ -1162,7 +1222,7 @@ account_iconNavGroup = new Layer
 	parent: MainPageArr[4]
 	width: Screen.width
 	height: 160
-	y: 560
+	y: 560*n
 	shadowY: 1
 	shadowColor: "#e0e0e0"
 	backgroundColor: "#FFF"	
@@ -1181,7 +1241,7 @@ accountBanBg = new Layer
 	parent: MainPageArr[4]
 	y: 0
 	width: Screen.width
-	height: 560
+	height: 560*n
 	html: "<div style='background: linear-gradient(-45deg, #FF6F43,#EA3C35);height:560px;filter:hue-rotate(0deg);'></div>"
 	backgroundColor: null
 
@@ -1192,6 +1252,8 @@ AccountStatusBar = new Layer
 	image: "images/Status Bar (White).png"
 	z: 1
 AccountStatusBar.placeBefore(accountBanBg)
+
+
 
 
 accountBanBgShadow = accountBanBg.copy()
@@ -1381,5 +1443,6 @@ for i in [0...BottomBarData.length]
 		@children[1].opacity = 0
 		@children[0].opacity = 1
 		MainPageArr[@index-1].visible = true
-		
+	
+window.onresize = Utils.debounce 0.1, -> location.reload()		
 

@@ -1,15 +1,16 @@
 class exports.ListWithIcon extends Layer
+	n = Screen.width/750
 	constructor: (@options={}) ->
 		_.defaults @options,
 			backgroundColor:"#FFF"
-			height: 96
+			height: 96*n
 			width:Screen.width
 		
 		@list_name = new TextLayer
 			width:328
-			height:96
+			height:96*n
 			lineHeight:3.4
-			fontSize: 28
+			fontSize: 28*n
 			fontFamily: "PingFang SC"
 			fontWeight: 400
 			letterSpacing: 0.0
@@ -18,14 +19,14 @@ class exports.ListWithIcon extends Layer
 			
 		
 		@list_icon = new Layer
-			width:40
-			height:40
+			width:40*n
+			height:40*n
 			backgroundColor:null
 			image:""
 
 		@list_arrow = new Layer
-			width:9.5
-			height:19
+			width:9.5*n
+			height:19*n
 			backgroundColor:null
 			image:"images/account/arrow.svg"
 			
@@ -33,10 +34,10 @@ class exports.ListWithIcon extends Layer
 		
 		@list_name.parent = @
 		@list_name.y = Align.center
-		@list_name.x = 120
+		@list_name.x = 120*n
 		@list_icon.parent = @
-		@list_icon.y = 28
-		@list_icon.x = 44
+		@list_icon.y = 28*n
+		@list_icon.x = 44*n
 		@list_arrow.parent = @
 		@list_arrow.y = Align.center
 		@list_arrow.x = Align.right(-48)

@@ -1,15 +1,16 @@
 class exports.Button extends Layer
+	n = Screen.width/750
 	constructor: (@options={}) ->
 		@options.disabled ?= false
 		@options.backgroundColor = "#F14676"
-		@options.width = 240
-		@options.height = 80
+		@options.width = 240*n
+		@options.height = 80*n
 		
 		if @options.disabled is true
 			@options.backgroundColor ="#bdbdbd"
 		
 		@label = new TextLayer
-			fontSize:28
+			fontSize:28*n
 			color:"#FFF"
 			textAlign:"center"
 		@label.mySuperSexyFont ?= "'Source Sans', sans serif"

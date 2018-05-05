@@ -1,26 +1,28 @@
 class exports.AnnounceBar extends Layer
+	n = Screen.width/750
 	constructor: (@options={}) ->
 		_.defaults @options,
 			backgroundColor:"#FFF"
 			width: Screen.width
-			height: 80
+			height: 80*n
 		
 		@annouceTitle = new TextLayer
-			x: 56
-			height:80
+			x: 56*n
+			height:80*n
 			padding:24
+			lineHeight:1.3*n
 			backgroundColor:"null"
 			text: "Wheat wallet goddess festival activity..."
-			fontSize:24
+			fontSize:24*n
 			color:"#2D2929"
 			fontWeight:400
 			textAlign:"center"
 		
 		@annouceButton = new TextLayer
-			width:80
-			height:80
+			width:80*n
+			height:80*n
 			x:Align.right(-16)
-			fontSize:24
+			fontSize:24*n
 			lineHeight:3.2
 			color:"#9e9e9e"
 			text:"more"
@@ -28,8 +30,8 @@ class exports.AnnounceBar extends Layer
 			backgroundColor:"#FFF"
 		
 		@annouceIcon = new Layer
-			width:40
-			height:40
+			width:40*n
+			height:40*n
 			x:Align.left(24)
 			image:"images/annoucebaricon.svg"
 			
